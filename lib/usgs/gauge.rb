@@ -22,7 +22,7 @@ module USGS
         next if line =~ /^agency/
 
         fields = line.split(/\t/)
-        flow = fields[3]
+        flow = fields[4]
       end
       flow
     end
