@@ -20,8 +20,8 @@ module USGS
 
         url = "http://waterdata.usgs.gov/#{st}/nwis/current/?type=flow&format=rdb"
         rivers = {}
-
-        open(url).each do |line|
+        
+        URI.open(url).each do |line|
           next if line =~ /^#/
           next if line =~ /^5/
           next if line =~ /^agency/
