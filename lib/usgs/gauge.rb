@@ -16,7 +16,7 @@ module USGS
     def latest_flow
       url = "http://waterdata.usgs.gov/nwis/uv?cb_00060=on&format=rdb&period=1&site_no=#{@site_number}"
       flow = 0
-      open(url).each do |line|
+      URI.open(url).each do |line|
         next if line =~ /^#/
         next if line =~ /^5/
         next if line =~ /^agency/
@@ -103,7 +103,7 @@ module USGS
 
       url = "http://waterdata.usgs.gov/nwis/dv?site_no=#{@site_number}&cb_00060=on&begin_date=#{begin_dt.strftime("%Y-%m-%d")}&end_date=#{end_dt.strftime("%Y-%m-%d")}&format=rdb"
       mean_flows_hash = {}  
-      open(url).each do |line|
+      URI.open(url).each do |line|
         next if line =~ /^#/
         next if line =~ /^5/
         next if line =~ /^agency/
@@ -151,7 +151,7 @@ module USGS
       median_flows_hash = {}
       percentile20_flows_hash = {}
       percentile80_flows_hash = {}
-      open(url).each do |line|
+      URI.open(url).each do |line|
         next if line =~ /^#/
         next if line =~ /^5/
         next if line =~ /^agency/
@@ -182,7 +182,7 @@ module USGS
     def populate_site_data
       
       url = "http://waterservices.usgs.gov/NWISQuery/GetDV1?SiteNum=#{@site_number}&ParameterCode=00060&StatisticCode=00003&StartDate=2000-11-16&EndDate=2000-11-17&action=Submit"
-      doc = REXML::Document.new(open(url))
+      doc = REXML::Document.new(URI.open(url))
 
       @lat_lon = [0.00, 0.00]
       REXML::XPath.each(doc, "//latitude") {|el| @lat_lon[0] = el.text.to_f}
