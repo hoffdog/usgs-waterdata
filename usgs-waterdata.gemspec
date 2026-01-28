@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.email    = "ctenbrink@gmail.com"
   s.homepage = "http://github.com/ADLongwell/usgs-waterdata"
   s.description = "A library for obtaining statistical and real-time flows from the Unite States Geological Survey's National Water Information System"
-  s.has_rdoc = true
   s.authors  = ["Aaron Longwell", "Chris Tenbrink"]
   s.files    = [ "History.txt",
                  "init.rb",
